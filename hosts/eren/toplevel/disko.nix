@@ -120,7 +120,7 @@ delib.host {
           echo " >> >> $1 Deleted!! << <<"
       }
       # remove subvolume that after 30 day
-      for i in $(find /btrfs_tmp/@snapshot/@-old/ -maxdepth 1 -mtime +30); do
+      for i in $(find /btrfs_tmp/@snapshot/@-old/ -maxdepth 1 -mtime +1); do
           delete_subvolume_recursively "$i"
       done
 
