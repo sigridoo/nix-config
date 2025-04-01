@@ -12,16 +12,20 @@ delib.module {
   in {
     imports = [(lib.mkAliasOptionModule ["user"] ["users" "users" username])];
 
+    users.mutableUsers = false;
+
+    sops.secrets."users.${username}.hashedPassword".neededForUsers = true;
+
     user.isNormalUser = true;
-    user.password = "123456";
     user.extraGroups = ["wheel"];
+    user.hashedPasswordFile = sops.secrets."users.${username}.hashedPassword".path;
 
     # users = {
     #   groups.${username} = {};
     #
     #   users.${username} = {
     #     isNormalUser = true;
-    #     # hashedPasswordFile = decryptSecretFile "user/hashedPassword";
+    #     hashedPasswordFile = decryptSecretFile "user/hashedPassword";
     #     initPassword = "123456";
     #     extraGroups = ["wheel"];
     #   };
