@@ -15,6 +15,6 @@ delib.host {
   };
 
   shared.myconfig = {name, ...}: {
-    networking.hosts."192.168.31.102" = name;
+    networking.hosts."192.168.31.102" = [name];
   };
 }

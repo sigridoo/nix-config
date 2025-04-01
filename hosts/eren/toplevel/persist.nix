@@ -4,6 +4,6 @@ delib.host {
 
   myconfig.persist = {
     enable = true;
-    persistPath = "/persist";
+    persistPath = "/.persist";
   };
 }

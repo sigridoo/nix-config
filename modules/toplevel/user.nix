@@ -13,7 +13,7 @@ delib.module {
     imports = [(lib.mkAliasOptionModule ["user"] ["users" "users" username])];
 
     user.isNormalUser = true;
-    user.initPassword = "123456";
+    user.password = "123456";
     user.extraGroups = ["wheel"];
 
     # users = {
