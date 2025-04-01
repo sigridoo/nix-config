@@ -3,6 +3,7 @@ delib.module {
   name = "hosts";
 
   options = with delib; let
+    allFeatures = ["cli" "gui" "gaming" "hacking" "powersave"];
     host = {config, ...}: {
       options =
         hostSubmoduleOptions

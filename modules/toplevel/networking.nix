@@ -39,13 +39,13 @@ delib.module {
 
       dhcpcd.extraConfig = "nohook resolv.conf";
       networkmanager.dns = "none";
-      interfaces = lib.mapAttrs (ip: cidr:
+      interfaces = lib.mapAttrs (iface: cidr:
         let
           parts = lib.splitString "/" cidr;
           ip = lib.head parts;
           prefix = lib.toInt (lib.elemAt parts 1);
         in {
-          ${ip} = {
+          ${iface} = {
             useDHCP = false;
             ipv4.addresses = [{
               address = ip;

@@ -12,9 +12,9 @@ delib.host {
     interfaces = {
       "wlp4s0" = "192.168.31.102/24";
     };
-  }
+  };
 
   shared.myconfig = {name, ...}: {
     networking.hosts."192.168.31.102" = name;
-  }
+  };
 }
