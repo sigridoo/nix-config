@@ -21,7 +21,7 @@ delib.module {
       enable = true;
       lfs.enable = true;
 
-      userName = myconfig.constants.username;
+      userName = myconfig.constants.userfullname;
       userEmail = myconfig.constants.gitemail;
 
       signing = lib.mkIf (cfg.signingKey != null) {
