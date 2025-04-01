@@ -4,6 +4,7 @@
   homeconfig,
   pkgs,
   inputs,
+  lib,
   ...
 }:
 delib.module {
@@ -28,8 +29,11 @@ delib.module {
     };
   };
 
-  nixos.always = {cfg, ...}: {
+  nixos.always = {cfg, myconfig, ...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
+    system.activationScripts.setupSecrets = lib.mkIf (myconfig.persist.enable && cfg.secrets != {}) {
+      deps = [ "persist-files" ];
+    };
     sops = {
       defaultSopsFile = ../../secrets.yaml;
       defaultSopsFormat = "yaml";

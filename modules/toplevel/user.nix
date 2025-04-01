@@ -19,7 +19,6 @@ delib.module {
     user.extraGroups = ["wheel"];
     # user.password = "123456";
     user.hashedPasswordFile = config.sops.secrets."users/${username}/hashedPassword".path;
-    fileSystems."/".neededForBoot = true;
 
     sops.secrets."users/${username}/hashedPassword" = {
       neededForUsers = true;
