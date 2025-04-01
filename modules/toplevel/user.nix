@@ -2,6 +2,7 @@
   delib,
   lib,
   constants,
+  config,
   ...
 }:
 delib.module {
@@ -14,21 +15,16 @@ delib.module {
 
     users.mutableUsers = false;
 
-    sops.secrets."users.${username}.hashedPassword".neededForUsers = true;
-
     user.isNormalUser = true;
     user.extraGroups = ["wheel"];
-    user.hashedPasswordFile = sops.secrets."users.${username}.hashedPassword".path;
+    # user.password = "123456";
+    user.hashedPasswordFile = config.sops.secrets."users/${username}/hashedPassword".path;
+    fileSystems."/".neededForBoot = true;
 
-    # users = {
-    #   groups.${username} = {};
-    #
-    #   users.${username} = {
-    #     isNormalUser = true;
-    #     hashedPasswordFile = decryptSecretFile "user/hashedPassword";
-    #     initPassword = "123456";
-    #     extraGroups = ["wheel"];
-    #   };
-    # };
+    sops.secrets."users/${username}/hashedPassword" = {
+      neededForUsers = true;
+      mode = "0400";
+      owner = username;
+    };
   };
 }

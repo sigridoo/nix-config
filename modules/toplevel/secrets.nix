@@ -2,14 +2,14 @@
 {
   delib,
   homeconfig,
-  ylib,
   pkgs,
+  inputs,
   ...
 }:
 delib.module {
   name = "secrets";
 
-  options.sops = with delib; {
+  options.secrets = with delib; {
     secrets = attrsOfOption attrs {};
     templates = attrsOfOption attrs {};
   };
@@ -18,9 +18,18 @@ delib.module {
 
   # templates are not yet implemented in sops-nix for home-manager
   home.always = {cfg, ...}: {
-    home.packages = [pkgs.sops];
-    imports = [inputs.sops.homeManagerModule];
+    imports = [inputs.sops-nix.homeManagerModules.sops];
 
+    sops = {
+      defaultSopsFile = ../../secrets.yaml;
+      defaultSopsFormat = "yaml";
+      age.keyFile = toString /${homeconfig.home.homeDirectory}/.config/sops/age/keys.txt;
+      inherit (cfg) secrets;
+    };
+  };
+
+  nixos.always = {cfg, ...}: {
+    imports = [inputs.sops-nix.nixosModules.sops];
     sops = {
       defaultSopsFile = ../../secrets.yaml;
       defaultSopsFormat = "yaml";
