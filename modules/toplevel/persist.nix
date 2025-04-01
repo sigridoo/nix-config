@@ -24,6 +24,10 @@ delib.module {
   # home.always.imports = [inputs.impermanence.nixosModules.home-manager.impermanence];
 
   nixos.ifEnabled = {cfg, ...}: {
+    security.sudo.extraConfig = ''
+      # remove sudo lectures
+      Defaults lecture = never
+    '';
     environment.persistence.${cfg.persistPath} = {
       enable = true;
       hideMounts = true;
