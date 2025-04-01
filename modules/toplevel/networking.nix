@@ -45,13 +45,11 @@ delib.module {
           ip = lib.head parts;
           prefix = lib.toInt (lib.elemAt parts 1);
         in {
-          ${iface} = {
-            useDHCP = false;
-            ipv4.addresses = [{
-              address = ip;
-              prefixLength = prefix;
-            }];
-          };
+          useDHCP = false;
+          ipv4.addresses = [{
+            address = ip;
+            prefixLength = prefix;
+          }];
         }
       ) cfg.interfaces;
 
