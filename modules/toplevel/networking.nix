@@ -30,6 +30,8 @@ delib.module {
     interfaces = attrsOfOption ipv4CidrType {};
   };
 
+  myconfig.always.persist.directories = ["/etc/NetworkManager/system-connections"];
+
   nixos.always = {cfg, ...}: {
     networking = {
       hostName = host.name;
