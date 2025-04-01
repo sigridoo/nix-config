@@ -21,4 +21,8 @@ delib.module {
     compression = true;
     hashKnownHosts = true;
   };
+
+  nixos.ifEnabled.programs.ssh = {
+    startAgent = true;
+  };
 }

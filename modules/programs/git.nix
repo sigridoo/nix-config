@@ -30,7 +30,7 @@ delib.module {
       };
 
       extraConfig = {
-        init.defaultBranch = "master";
+        init.defaultBranch = "main";
       };
     };
   };
