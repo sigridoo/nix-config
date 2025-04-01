@@ -1,0 +1,32 @@
+{
+  delib,
+  config,
+  lib,
+  modulesPath,
+  ...
+}:
+delib.host {
+  name = "eren";
+
+  homeManagerSystem = "x86_64-linux";
+  home.home.stateVersion = "24.11";
+
+  myconfig.boot.mode = "uefi";
+
+  nixos = {
+    nixpkgs.hostPlatform = "x86_64-linux";
+    system.stateVersion = "24.11";
+
+    imports = [(modulesPath + "/installer/scan/not-detected.nix")];
+
+    boot = {
+      initrd.availableKernelModules = ["nvme" "xhci_pci" "ahci" "usb_storage" "usbhid" "sd_mod"];
+      initrd.kernelModules = [];
+      kernelModules = ["kvm-intel"];
+      extraModulePackages = [];
+      kernelParams = ["nvme_core.default_ps_max_latency_us=0"];
+    };
+
+    hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  };
+}
