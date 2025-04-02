@@ -6,7 +6,7 @@ delib.module {
   home.ifEnabled.programs.nixvim.keymaps = [
     # For luasnip
     {
-      mode = ["i", "s"];
+      mode = ["i" "s"];
       key = "<C-j>";
       action = nixvimLib.mkRaw ''
         local ls = require("luasnip")
@@ -23,7 +23,7 @@ delib.module {
       };
     }
     {
-      mode = ["i", "s"];
+      mode = ["i" "s"];
       key = "<C-l>";
       action = nixvimLib.mkRaw ''
         function() require("luasnip").jump( 1) end
@@ -35,7 +35,7 @@ delib.module {
       };
     }
     {
-      mode = ["i", "s"];
+      mode = ["i" "s"];
       key = "<C-h>";
       action = nixvimLib.mkRaw ''
         function() require("luasnip").jump(-1) end
@@ -60,7 +60,7 @@ delib.module {
           };
           menu = {
             auto_show = false;
-            draw.treesitter = {'lsp'};
+            draw.treesitter = {lsp = true;};
           };
         };
         signature = {
@@ -75,7 +75,7 @@ delib.module {
           ];
           provider = {
             buffer.score_offset = -7;
-          }
+          };
         };
         keymap = {
           preset = "super-tab";
