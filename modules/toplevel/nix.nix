@@ -44,5 +44,5 @@ in
         in
           formatted;
     };
-    home.always = {inherit nix;};
+    # home.always = {inherit nix;};
   }

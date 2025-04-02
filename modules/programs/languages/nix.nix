@@ -1,4 +1,4 @@
-{delib, ...}:
+{delib, pkgs, ...}:
 delib.module {
   name = "programs.languages.nix";
 
