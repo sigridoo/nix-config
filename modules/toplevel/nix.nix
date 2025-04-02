@@ -2,6 +2,7 @@
   delib,
   pkgs,
   lib,
+  config,
   ...
 }: let
   nix = {
