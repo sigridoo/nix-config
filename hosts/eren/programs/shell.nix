@@ -1,5 +1,10 @@
 { delib, host, ... }:
 delib.host {
   name = "eren";
-  myconfig.programs.shell.enabledShells = ["bash" "nushell"];
+  myconfig.programs.bash = {
+    enable = true;
+    shellAliases = {
+      cat = "bat";
+    }
+  };
 }

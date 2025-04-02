@@ -1,13 +1,16 @@
-{delib, host, shell, ...}:
+{delib, host, ...}:
 delib.module {
   name = "programs.bash";
 
-  options = delib.singleEnableOption builtins.elem "bash" shell.enabledShells;
+  options.programs.bash = {
+    enable = boolOption host.cliFeatured;
+    shellAliases = attrsOfOption str {};
+  };
 
-  home.ifEnabled.programs.bash = {
+  home.ifEnabled.programs.bash = {cfg, ...}: {
+    inherit (cfg) shellAliases;
     enable = true;
     enableCompletion = true;
-    shellAliases = host.bashShellAliases;
     historyIgnore = [
       "ls"
       "cd"
