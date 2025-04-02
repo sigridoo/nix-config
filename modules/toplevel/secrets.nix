@@ -34,6 +34,7 @@ delib.module {
 
   # templates are not yet implemented in sops-nix for home-manager
   home.always = {cfg, ...}: {
+    home.packages = [pkgs.sops];
     imports = [inputs.sops-nix.homeManagerModules.sops];
     sops = sops // {inherit(cfg) secrets;};
   };
