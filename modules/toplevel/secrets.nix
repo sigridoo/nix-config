@@ -9,7 +9,7 @@
   ...
 }:
 let
-  sops = {
+  sopsconfig = {
     defaultSopsFile = ../../secrets.yaml;
     defaultSopsFormat = "yaml";
     gnupg.sshKeyPaths = [];
@@ -36,12 +36,12 @@ delib.module {
   home.always = {cfg, ...}: {
     home.packages = with pkgs; [sops age gnupg];
     imports = [inputs.sops-nix.homeManagerModules.sops];
-    sops = sops // {inherit(cfg) secrets templates;};
+    sops = sopsconfig // {inherit(cfg) secrets templates;};
   };
 
   nixos.always = {cfg, myconfig, ...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
-    sops = sops // {inherit(cfg) secrets templates;};
+    sops = sopsconfig // {inherit(cfg) secrets templates;};
   };
 
 }

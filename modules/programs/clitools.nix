@@ -1,12 +1,12 @@
-{delib, host, ...}:
+{delib, host, pkgs, ...}:
 delib.module {
   name = "programs.clitools";
 
-  options = singleEnableOption host.cliFeatured;
+  options = delib.singleEnableOption host.cliFeatured;
 
   myconfig.ifEnabled = {
     persist.user.directories = [".local/share/zoxide"];
-    programs.bash.bashAliaises = {
+    programs.bash.shellAliases = {
       cat = "bat";
     };
   };
@@ -43,7 +43,7 @@ delib.module {
     programs = {
       eza = {
         enable = true;
-        icons = false;
+        icons = "never";
         git = true;
         enableBashIntegration = myconfig.programs.bash.enable;
         enableNushellIntegration = myconfig.programs.nushell.enable;
