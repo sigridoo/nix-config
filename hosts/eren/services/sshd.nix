@@ -1,7 +1,4 @@
-{
-  delib,
-  ...
-}:
+{ delib, ... }:
 delib.host {
   name = "eren";
 
