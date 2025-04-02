@@ -5,6 +5,6 @@ delib.host {
     enable = true;
     shellAliases = {
       cat = "bat";
-    }
+    };
   };
 }
