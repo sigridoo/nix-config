@@ -54,6 +54,7 @@ delib.module {
 
           AllowUsers = [constants.username];
         };
+        package = pkgs.openssh_hpn;
       };
     };
   };
