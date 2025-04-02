@@ -1,7 +1,7 @@
 {delib, host, ...}:
-delib.modules {
+delib.module {
   name = "programs.zoxide";
-  options = singleEnableOption host.cliFeatured;
+  options = delib.singleEnableOption host.cliFeatured;
   myconfig.ifEnabled.persist.user.directories = [".local/share/zoxide"];
   home.ifEnabled.programs.zoxide = {
     enable = true;

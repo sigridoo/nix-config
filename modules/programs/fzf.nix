@@ -1,5 +1,5 @@
 {delib, host, ...}:
-delib.modules {
+delib.module {
   name = "programs.fzf";
 
   options = delib.singleEnableOption host.cliFeatured;
