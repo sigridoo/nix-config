@@ -36,12 +36,12 @@ delib.module {
   home.always = {cfg, ...}: {
     home.packages = [pkgs.sops];
     imports = [inputs.sops-nix.homeManagerModules.sops];
-    sops = sops // {inherit(cfg) secrets;};
+    sops = sops // {inherit(cfg) secrets templates;};
   };
 
   nixos.always = {cfg, myconfig, ...}: {
     imports = [inputs.sops-nix.nixosModules.sops];
-    sops = sops // {inherit(cfg) secrets;};
+    sops = sops // {inherit(cfg) secrets templates;};
   };
 
 }
