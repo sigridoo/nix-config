@@ -11,8 +11,10 @@ delib.module {
   nixos.always = let
     inherit (constants) username;
   in {
-    imports = [(lib.mkAliasOptionModule ["user"] ["users" "users" username])];
-    imports = [(lib.mkAliasOptionModule ["root"] ["users" "users" "root"])];
+    imports = [
+    (lib.mkAliasOptionModule ["user"] ["users" "users" username])
+    (lib.mkAliasOptionModule ["root"] ["users" "users" "root"])
+    ];
 
     users.mutableUsers = false;
 
