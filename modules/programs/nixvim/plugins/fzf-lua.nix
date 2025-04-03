@@ -4,9 +4,11 @@ delib.module {
 
   options = delib.singleEnableOption true;
 
+  myconfig.ifEnabled.programs.fzf.enable = true;
+
   home.ifEnabled.programs.nixvim.plugins.fzf-lua = {
     enable = true;
-    profile = "ivy";
+    profile = "max-perf";
 
     keymaps = {
       "<leader>/" = "live_grep_native";

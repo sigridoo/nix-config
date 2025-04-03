@@ -1,7 +1,6 @@
 {
   delib,
   inputs,
-  homeconfig,
   host,
   ...
 }:
@@ -13,8 +12,6 @@ delib.module {
 
     defaultEditor = boolOption true;
   };
-
-  myconfig.always.args.shared.nixvimLib = homeconfig.lib.nixvim;
 
   home.always.imports = [inputs.nixvim.homeManagerModules.nixvim];
 
